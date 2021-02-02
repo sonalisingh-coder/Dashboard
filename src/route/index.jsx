@@ -160,7 +160,7 @@ import TicketClassification from "../components/ticket-classification"
 
 
 //ticket prediction
-import TicketPrediction from "../components/live-ticket-prediction"
+import TicketPrediction from "../components/manage"
 
 //CSV FILE READ
 import CsvFileRead from "../data/csvFileRead"

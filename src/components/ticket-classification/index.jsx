@@ -1,71 +1,110 @@
 import React, { Fragment, useState } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
-import ReactFileReader from 'react-file-reader';
-import { CsvToHtmlTable } from 'react-csv-to-table';
 import Papa from 'papaparse';
 import { Container, Row, Col, Card, CardHeader, CardBody } from 'reactstrap'
 import DataTable from 'react-data-table-component';
-import { productData, productColumns } from '../../data/product-list'
-import csvFile from "./ticket_classi_pred.csv"
+import csvFile from "./ticket-data.csv";
+import * as XLSX from 'xlsx';
 
-const sampleData = `
-Chrysler Imperial,14.7,8,440,230,3.23,5.345,17.42,0,0,3,4
-Fiat 128,32.4,4,78.7,66,4.08,2.2,19.47,1,1,4,1
-`;
 
-let tableData = null;
-Papa.parse(csvFile, {
-    download: true,
-    complete: function (input) {
-        const records = input.data;
-    },
-    step: function (row) {
-         tableData=row.data;
-        //  console.log(row.data);
+const Productlist = () => {
+    
+
+    const [columns, setColumns] = useState([]);
+    const [data, setData] = useState([]);
+    
+
+    // process CSV data
+  const processData = dataString => {
+    const dataStringLines = dataString.split(/\r\n|\n/);
+    const headers = dataStringLines[0].split(/,(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)/);
+ 
+    const list = [];
+    for (let i = 1; i < dataStringLines.length; i++) {
+      const row = dataStringLines[i].split(/,(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)/);
+      if (headers && row.length == headers.length) {
+        const obj = {};
+        for (let j = 0; j < headers.length; j++) {
+          let d = row[j];
+          if (d.length > 0) {
+            if (d[0] == '"')
+              d = d.substring(1, d.length - 1);
+            if (d[d.length - 1] == '"')
+              d = d.substring(d.length - 2, 1);
+          }
+          if (headers[j]) {
+            obj[headers[j]] = d;
+          }
+        }
+ 
+        // remove the blank rows
+        if (Object.values(obj).filter(x => x).length > 0) {
+          list.push(obj);
+        }
+      }
     }
-});
+ 
+    // prepare columns list from headers
+    const columns = headers.map(c => ({
+      name: c,
+      selector: c,
+    }));
+ 
+    setData(list);
+    setColumns(columns);
+  }
 
-class Productlist extends React.Component {
-    state = {
-        csvData: null
-    };
+ 
+ const ticketsData = new File([__dirname + `${csvFile}`], "ticket-data.csv", {type: "text/csv"})
+    // handle file upload
+    const handleFileUpload = e => {
+        console.log(e.target.files[0]);
+        console.log(ticketsData);
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          /* Parse data */
+          const bstr = evt.target.result;
+          const wb = XLSX.read(bstr, { type: 'binary' });
+          /* Get first worksheet */
+          const wsname = wb.SheetNames[0];
+          const ws = wb.Sheets[wsname];
+          /* Convert array of arrays */
+          const data = XLSX.utils.sheet_to_csv(ws, { header: 1 });
+          processData(data);
+        };
+        reader.readAsText(file);
+    }
 
 
-    render() {
-        return <Fragment>
-            <Breadcrumb parent="Dashboard" title="Ticket List" />
+    return (
+        <Fragment>
+            <Breadcrumb parent="Dashboard"  />
             <Container fluid={true}>
-                <ReactFileReader
-                    multipleFiles={false}
-                    fileTypes={[".csv"]}
-
-                    handleFiles={this.handleFiles}>
-                    <button className='btn'>Upload</button>
-                </ReactFileReader>
-
 
                 <Row>
                     <Col sm="12">
                         <Card>
                             <CardHeader>
-                                <h5>{"Ticket Classification"} </h5><span>{""}</span>
+                                <h5>{"Ticket Classification"} </h5>
                             </CardHeader>
                             <CardBody>
+                                <input
+                                    type="file"
+                                    accept=".csv,.xlsx,.xls"
+                                   
+                                    onChange={handleFileUpload}
+                                />
                                 <div className="table-responsive product-table">
-                                    <CsvToHtmlTable
-                                        data={this.state.csvData || sampleData}
-                                        csvDelimiter=","
-                                        tableClassName="table table-striped table-hover"
-                                    />
-
-                                    {/* <DataTable
+                                    <DataTable
                                         noHeader
-                                        columns={productColumns}
-                                        data={productData}
+                                        columns={columns}
+                                        data={data}
                                         pagination
                                         highlightOnHover
-                                        persistTableHead
-                                    /> */}
+                                        
+                                        wrap
+                                    />
                                 </div>
                             </CardBody>
                         </Card>
@@ -74,72 +113,10 @@ class Productlist extends React.Component {
             </Container>
         </Fragment>
 
-    }
-
-
-
-
-    handleFiles = files => {
-        var reader = new FileReader();
-        reader.onload = (e) => {
-            // Use reader.result
-            this.setState({
-                csvData: reader.result
-            })
-        }
-        console.log(files[0])
-        reader.readAsText(files[0]);
-    }
+    )
 
 }
-// const Productlist = (data) => {
-//   const [csvData , setCsvData] = useState({});
 
-//   const handleFiles = files => {
-//     var reader = new FileReader();
-//     reader.onload = () => {
-//         // Use reader.result
-//         setCsvData({
-//           csvData: reader.result
-//         })
-//       }
-//       reader.readAsText(files[0]);
-// }
-
-//     return (
-//   <Fragment>
-//   <Breadcrumb parent="ECommerce" title="Product List"/>
-//   <Container fluid={true}>
-
-
-
-//     <Row>
-//         <Col sm="12">
-//             <Card>
-//                 <CardHeader>
-//                     <h5>{"ProductListTitle"} </h5><span>{"ProductListDesc"}</span>
-//                 </CardHeader>
-//                 <CardBody>
-//                     <div className="table-responsive product-table">
-//                         <DataTable
-//                             noHeader
-//                             columns={productColumns}
-//                             data={productData}
-//                             pagination
-//                             highlightOnHover
-//                             persistTableHead
-//                         />
-//                     </div>
-//                 </CardBody>
-//             </Card>
-//         </Col>
-//     </Row>
-//    </Container>
-//    </Fragment>
-
-//     )
-
-//   }
 
 
 
