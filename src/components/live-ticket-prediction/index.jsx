@@ -35,17 +35,17 @@ const ManageProjects = () => {
 
     return (
         <Fragment>
-            <Breadcrumb parent="Dashboard" title="Ticket Prediction" />
+            <Breadcrumb  title="Live Ticket Prediction" />
             <Container fluid={true}>
                 <Row>
                     {console.log(data)}
 
                     <Col >
                         <Card >
-                            <CardHeader>
+                            {/* <CardHeader>
                                 <h5>{"Live Ticket Prediction"}</h5>
                                 <span>{""}</span>
-                            </CardHeader>
+                            </CardHeader> */}
                             <CardBody >
                                 <Row >
                                     <Col md={{ size: 6, offset: 3 }} >

@@ -79,15 +79,15 @@ const Productlist = () => {
 
     return (
         <Fragment>
-            <Breadcrumb parent="Dashboard"  />
+            <Breadcrumb title="Ticket Classification"  />
             <Container fluid={true}>
 
                 <Row>
                     <Col sm="12">
                         <Card>
-                            <CardHeader>
+                            {/* <CardHeader>
                                 <h5>{"Ticket Classification"} </h5>
-                            </CardHeader>
+                            </CardHeader> */}
                             <CardBody>
                                 <input
                                     type="file"
@@ -102,8 +102,7 @@ const Productlist = () => {
                                         data={data}
                                         pagination
                                         highlightOnHover
-                                        
-                                        wrap
+                                        overflowX= "false"
                                     />
                                 </div>
                             </CardBody>

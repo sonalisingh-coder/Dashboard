@@ -50,32 +50,10 @@ const Ecommerce = (props) => {
 
     return (
         <Fragment>
-            <Breadcrumb parent="Dashboard" title="Dashboard" />
+            <Breadcrumb parent="" title="Dashboard" />
             <Container fluid={true}>
             <Row >
-            <Col sm="12" xl="4">
-                <Card>
-                  <CardHeader>
-                    <h5>Tickets By Categories <span className="digits"></span></h5>
-                  </CardHeader>
-                  <CardBody className="chart-block" >
-                  <GoogleDonutChart/>
-                  </CardBody>
-                </Card>
-              </Col>
-
-              {/* <Col xl="4" md="12">
-            <Card>
-              <CardHeader>
-                <h5>{"Tickets By Categories"}</h5>
-              </CardHeader>
-              <CardBody className="chart-block">
-                 <Doughnut data={doughnutData} options={doughnutOption} width={778} height={400} />
-              </CardBody>
-            </Card>
-          </Col> */}
-
-              <Col xl="8 xl-100" className="dashboard-sec box-col-12">
+            <Col xl="8 xl-100" className="dashboard-sec box-col-12">
             <Card className="earning-card">
               <CardBody className="p-0">
                 <Row className="m-0">
@@ -97,25 +75,28 @@ const Ecommerce = (props) => {
                         <h5>{"20%"}</h5>
                         <p className="font-roboto">{"This Month Growth"}</p>
                       </Col>
-                      <Col xl="12" className="p-0 left-btn"><a className="btn btn-gradient" href="#javascript">{Summary}</a></Col>
+                      <Col xl="12" className="p-0 left_side_earning">
+                        <h5>{"5%"}</h5>
+                        <p className="font-roboto">{"This WeekGrowth"}</p>
+                      </Col>
+                      {/* <Col xl="12" className="p-0 left-btn"><a className="btn btn-gradient" href="#javascript">{Summary}</a></Col> */}
                     </Row>
                   </Col>
                   <Col xl="9" className="p-0">
                     <div className="chart-right">
                       <Row className="m-0 p-tb">
-                        <Col xl="7" md="7" sm="7" className="col-12 p-0">
+                        <Col xl="6" md="6" sm="6" className="col-12 p-0">
                           <div className="inner-top-left">
                             <ul className="d-flex list-unstyled">
-                              <li>{"Daily"}</li>
-                              <li className="active">{"Weekly"}</li>
-                              <li>{"Monthly"}</li>
-                              <li>{"Yearly"}</li>
+                              
+                              <li className="active">{"Last 7 days report"}</li>
+                              
                             </ul>
                           </div>
                         </Col>
-                        <Col xl="5" md="5" sm="5" className="col-12 p-0 justify-content-end">
+                        <Col xl="6" md="6" sm="6" className="col-12 p-0 ">
                           <div className="inner-top-right">
-                            <ul className=" d-flex list-unstyled justify-content-evenly">
+                            <ul className="d-flex list-unstyled ">
                               <li>{"Network"}</li>
                               <li className="server">{"Server"}</li>
                               <li>{"Application"}</li>
@@ -167,6 +148,29 @@ const Ecommerce = (props) => {
               </CardBody>
             </Card>
           </Col>
+            <Col sm="12" xl="4">
+                <Card>
+                  <CardHeader>
+                    <h5>Tickets By Categories <span className="digits"></span></h5>
+                  </CardHeader>
+                  <CardBody className="chart-block" >
+                  <GoogleDonutChart/>
+                  </CardBody>
+                </Card>
+              </Col>
+
+              {/* <Col xl="4" md="12">
+            <Card>
+              <CardHeader>
+                <h5>{"Tickets By Categories"}</h5>
+              </CardHeader>
+              <CardBody className="chart-block">
+                 <Doughnut data={doughnutData} options={doughnutOption} width={778} height={400} />
+              </CardBody>
+            </Card>
+          </Col> */}
+
+         
          
           <Col  lg="4" >
             <Card className="o-hidden">
@@ -226,7 +230,7 @@ const Ecommerce = (props) => {
               </CardBody>
             </Card>
           </Col>
-          <Col xl="6 xl-50" className="box-col-12">
+          {/* <Col xl="6 xl-50" className="box-col-12">
                 <Card>
                   <CardHeader className="card-no-border">
                     <h5>News Update</h5>
@@ -272,7 +276,38 @@ const Ecommerce = (props) => {
                     </div>
                   </CardBody>
                 </Card>
-              </Col>
+              </Col> */}
+
+              <Col xl="6 xl-50" className="news box-col-6">
+            <Card>
+              <CardHeader>
+                <div className="header-top">
+                  <h5 className="m-0">{"News Update"}</h5>
+                  <div className="card-header-right-icon">
+                    <select className="button btn btn-primary">
+                      <option>{"Today"}</option>
+                      <option>{"Tomorrow"}</option>
+                      <option>{"Yesterday"}</option>
+                    </select>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardBody className="p-0">
+                <div className="news-update">
+                  <h6>{"36% off For pixel lights Couslations Types."}</h6><span>{"Lorem Ipsum is simply dummy..."}</span>
+                </div>
+                <div className="news-update">
+                  <h6>{"We are produce new product this"}</h6><span> {"Lorem Ipsum is simply text of the printing... "}</span>
+                </div>
+                <div className="news-update">
+                  <h6>{"50% off For COVID Couslations Types."}</h6><span>{"Lorem Ipsum is simply dummy..."}</span>
+                </div>
+              </CardBody>
+              <div className="card-footer" style={{padding:30}}>
+                <div className="bottom-btn"><a href="#javascript">{"More..."}</a></div>
+              </div>
+            </Card>
+          </Col>
               {/* <Col xl="7 xl-100" className="box-col-12 ">
                 <Row className="dash-chart">
                   <Col xl="6"  className="box-col-6" md="6">

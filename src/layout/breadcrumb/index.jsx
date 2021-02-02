@@ -14,8 +14,8 @@ const Breadcrumbs = (props) => {
             </Col>
             <Col xs="6">
               <Breadcrumb>
-                <BreadcrumbItem><Link to={`${process.env.PUBLIC_URL}/dashboard/default`}><Home /></Link></BreadcrumbItem>
-                <BreadcrumbItem>{props.parent}</BreadcrumbItem>
+                <BreadcrumbItem><Link to={`${process.env.PUBLIC_URL}/dashboard`}><Home /></Link></BreadcrumbItem>
+                {/* <BreadcrumbItem>{props.parent}</BreadcrumbItem> */}
                 <BreadcrumbItem active>{props.title}</BreadcrumbItem>
               </Breadcrumb>
             </Col>

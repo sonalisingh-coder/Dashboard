@@ -288,7 +288,7 @@ const Rightbar = (props) => {
           <li className="profile-nav onhover-dropdown p-0">
             <div className="media profile-media">
               <img className="b-r-10" src={authenticated ? auth0_profile.picture : profile} alt="" />
-              <div className="media-body"><span>{authenticated ? auth0_profile.name :  name}</span>
+              <div className="media-body"><span>{authenticated ? auth0_profile.name :  "Elina"}</span>
                 <p className="mb-0 font-roboto">{Admin} <i className="middle fa fa-angle-down"></i></p>
               </div>
             </div>
