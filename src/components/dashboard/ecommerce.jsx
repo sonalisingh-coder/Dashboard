@@ -20,7 +20,6 @@ const Ecommerce = () => {
     })
 
 
-
     return (
         <Fragment>
             <Breadcrumb parent="" title="Dashboard" />
@@ -55,20 +54,20 @@ const Ecommerce = () => {
                   <Col xl="9" className="p-0">
                     <div className="chart-right">
                       <Row className="m-0 p-tb">
-                        <Col xl="6" md="6" sm="6" className="col-12 p-0">
+                        <Col xl="9" md="9" sm="9" className="col-12 p-0">
                           <div className="inner-top-left">
-                            <ul className="d-flex list-unstyled">
+                            <ul className=" list-unstyled">
                               
                               <li className="active">{"Last 7 days report"}</li>
                               
                             </ul>
                           </div>
                         </Col>
-                        <Col xl="6" md="6" sm="6" className="col-12 p-0 ">
+                        <Col xl="3" md="3" sm="3" className="col-12 p-0 ">
                           <div className="inner-top-right">
-                            <ul className="d-flex list-unstyled ">
+                            <ul className=" list-unstyled ">
                               <li>{"Network"}</li>
-                              <li className="server">{"Server"}</li>
+                              <li>{"Server"}</li>
                               <li>{"Application"}</li>
                             </ul>
                           </div>

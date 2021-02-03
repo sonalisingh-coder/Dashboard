@@ -14,7 +14,7 @@ import {routes} from './route';
 
 const Root = () =>  {
 
-  const [anim, setAnim] = useState("");
+  const [anim] = useState("");
   //const animation = localStorage.getItem("animation") || ConfigDB.data.router_animation || 'fade'
 
  

@@ -237,20 +237,23 @@ $badge-light-color in (primary, $primary-color),
           li {
             position: relative;
             ;
-
+            
             &:before {
               content: "";
               position: absolute;
               width: 8px;
               height: 8px;
               border-radius: 50%;
-              background-color: var(--theme-deafult);
+              background-color: $danger-color;
               left: -40%;
               top: 27%;
             }
-
+            
+            &:first-child:before {
+              background-color:var(--theme-deafult);
+            }
             &:last-child:before {
-              background-color: $danger-color;
+              background-color: #5BBB26;
             }
           }
         }

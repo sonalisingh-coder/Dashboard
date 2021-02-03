@@ -45,13 +45,18 @@ const Productlist = () => {
  
     // prepare columns list from headers
     const columns = headers.map(c => ({
+    
       name: c,
       selector: c,
+     wrap : "true",
+    center : "true"
     }));
  
     setData(list);
     setColumns(columns);
   }
+
+ 
 
  
  const ticketsData = new File([__dirname + `${csvFile}`], "ticket-data.csv", {type: "text/csv"})
@@ -74,6 +79,29 @@ const Productlist = () => {
         };
         reader.readAsText(file);
     }
+
+    const customStyles = {
+      rows: {
+        style: {
+          minHeight: '72px',
+          // override the row height
+        }
+      },
+      headCells: {
+        style: {
+          borderRight: "1px solid #eee",
+          paddingLeft: '8px', // override the cell padding for head cells
+          paddingRight: '8px',
+        },
+      },
+      cells: {
+        style: {
+          borderRight: "1px solid #eee",
+          paddingLeft: '8px', // override the cell padding for data cells
+          paddingRight: '8px',
+        },
+      },
+    };
 
 
     return (
@@ -101,7 +129,7 @@ const Productlist = () => {
                                         data={data}
                                         pagination
                                         highlightOnHover
-                                        overflowX= "false"
+                                        customStyles={customStyles}
                                     />
                                 </div>
                             </CardBody>
