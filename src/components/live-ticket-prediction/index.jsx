@@ -1,28 +1,26 @@
 import React, { Fragment, useState } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
-import { Container, Row, Col, Card, CardHeader, CardBody, CardFooter, Form, FormGroup, Label, Input, Button } from 'reactstrap'
+import { Container, Row, Col, Card, CardBody, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import CountUp from 'react-countup';
-import DataTable from 'react-data-table-component'
-import { supportData, supportColumns } from '../../data/supportdb';
-import { Order, Done, Cancel, Pending, Profit, Loss, Running, Smooth } from '../../constant'
-import axios from 'axios';
 
 
 const ManageProjects = () => {
 
     let [desc, setDesc] = useState({ name: '' });
-    let [data, setData] = useState({});
+    let [data] = useState({});
     const postData = (e) => {
         e.preventDefault();
         console.log(desc);
 
+
+      
+
         fetch('https://heroku-aws-deploy.herokuapp.com/predict', {
             method: 'POST',
             mode: "cors",
-            // We convert the React state to JSON and send it as the POST body
             body: JSON.stringify(desc)
         }).then(function (response) {
-
+           console.log(response);
             return response.json();
         }).then(res => {
             console.log(res)
@@ -32,6 +30,7 @@ const ManageProjects = () => {
 
 
     }
+
 
     return (
         <Fragment>

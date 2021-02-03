@@ -1,7 +1,6 @@
 {
   "name": "cuba-react",
   "version": "0.1.0",
-  "proxy": "https://heroku-aws-deploy.herokuapp.com",
   "private": true,
   "homepage": "https://react.pixelstrap.com/cuba/",
   "dependencies": {
