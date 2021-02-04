@@ -2034,10 +2034,12 @@
 
             .logo-wrapper {
               padding: 17px 30px;
-
+             position:relative;
               .back-btn {
                 display: inline-block;
-                float: right;
+                position: absolute;
+                top: 20px;
+                right: 30px;
                 font-size: 20px;
               }
 
@@ -2945,11 +2947,11 @@
       }
     }
 
-    .nav-right {
-      .nav-menus {
-        margin-right: 60px;
-      }
-    }
+    // .nav-right {
+    //   .nav-menus {
+    //     margin-right: 60px;
+    //   }
+    // }
   }
 
   .profile-media {
@@ -4364,9 +4366,9 @@
       }
     }
 
-    .profile-nav {
-      display: none !important;
-    }
+    // .profile-nav {
+    //   display: none !important;
+    // }
 
     .page-body-wrapper {
       .page-title {
@@ -4376,9 +4378,9 @@
       }
     }
 
-    .nav-right .nav-menus {
-      margin-right: 45px;
-    }
+    // .nav-right .nav-menus {
+    //   margin-right: 45px;
+    // }
 
     &.compact-wrapper {
       .left-header .mega-menu {

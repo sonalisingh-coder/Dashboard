@@ -1,15 +1,13 @@
 import React, { Fragment, useState, useLayoutEffect, useEffect } from 'react';
-import { Sliders } from 'react-feather'
+//import { Container, Row, Col } from 'reactstrap'
+import {  Sliders } from 'react-feather'
 import { Link } from 'react-router-dom'
-const Leftbar = () => {
 
-  const [, setBonusUI] = useState(false)
+const Leftbar = (props) => {
+
 
   const [sidebartoggle, setSidebartoggle] = useState(true)
-  const [, setMegaboxtoggle1] = useState(true)
-  const [, setMegaboxtoggle2] = useState(true)
-  const [, setMegaboxtoggle3] = useState(true)
-  const [, setMegaboxtoggle4] = useState(true)
+ 
   const width = useWindowSize()
 
   function useWindowSize() {
@@ -40,25 +38,16 @@ const Leftbar = () => {
         }
     });
 
-    if (width <= 767) {
-      setMegaboxtoggle1(true)
-      setMegaboxtoggle2(true)
-      setMegaboxtoggle3(true)
-      setMegaboxtoggle4(true)
-    } else {
-      setMegaboxtoggle1(false)
-      setMegaboxtoggle2(false)
-      setMegaboxtoggle3(false)
-      setMegaboxtoggle4(false)
-    }
 
-  }, [width])
+
+   }, [width])
+
 
 
 
   const responsive_openCloseSidebar = (toggle) => {
     if(width <= 991){
-      setBonusUI(false)
+     
       document.querySelector(".page-header").className = "page-header";
       document.querySelector(".sidebar-wrapper").className = "sidebar-wrapper "
     }else{
@@ -66,7 +55,7 @@ const Leftbar = () => {
         setSidebartoggle(!toggle);
         document.querySelector(".page-header").className = "page-header close_icon";
         document.querySelector(".sidebar-wrapper").className = "sidebar-wrapper close_icon "
-        document.querySelector(".mega-menu-container").classList.remove("d-block")
+        // document.querySelector(".mega-menu-container").classList.remove("d-block")
       } else {
         setSidebartoggle(!toggle);
         document.querySelector(".page-header").className = "page-header";
@@ -79,20 +68,22 @@ const Leftbar = () => {
 
 
   return (
+ 
     <Fragment>
-      <div className="header-logo-wrapper" id="out_side_click">
-        <div className="logo-wrapper">
-          <Link to={`/dashboard`}>
-            <img className="img-fluid for-light" src={require("../../assets/images/logo/logo.png")} alt="" />
-            <img className="img-fluid for-dark" src={require("../../assets/images/logo/logo_dark.png")} alt="" />
-          </Link>
-        </div>
-        <div className="toggle-sidebar" onClick={() => responsive_openCloseSidebar(sidebartoggle)} style={window.innerWidth <= 991 ? {display:"block"} : {display:"none"}}>
-          <Sliders className="status_toggle middle sidebar-toggle" id="sidebar-toggle" />
-        </div>
+    <div className="header-logo-wrapper" id="out_side_click">
+      <div className="logo-wrapper">
+        <Link to={`${process.env.PUBLIC_URL}/dashboard/default`}>
+          <img className="img-fluid for-light" src={require("../../assets/images/logo/logo.png")} alt="" />
+          <img className="img-fluid for-dark" src={require("../../assets/images/logo/logo_dark.png")} alt="" />
+        </Link>
       </div>
-      
-    </Fragment>
+      <div className="toggle-sidebar" onClick={() => responsive_openCloseSidebar(sidebartoggle)} style={window.innerWidth <= 991 ? {display:"block"} : {display:"none"}}>
+        <Sliders className="status_toggle middle sidebar-toggle" id="sidebar-toggle" />
+      </div>
+    </div>
+
+  </Fragment>
+
   );
 }
 

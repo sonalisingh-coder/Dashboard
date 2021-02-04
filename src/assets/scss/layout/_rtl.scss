@@ -3831,8 +3831,11 @@
               }
             }
             .logo-wrapper {
+              position:relative;
               .back-btn{
-                float: left;
+                position: absolute;
+                top: 20px;
+                right: 30px;
                 transform: rotate(180deg);
               }
             }

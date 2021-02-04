@@ -4,7 +4,7 @@ import { Nav, NavLink, TabContent, TabPane, Button, Modal, ModalHeader, ModalBod
 import { useDispatch, useSelector } from 'react-redux'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify';
-import {Configuration,ModalTitle,CopyText,Cancel,LayoutType,LTR,RTL,Box,SidebarType,SidebarSettings,Default,Border,IconColor,RouterAnimation,ZoomFade,SildeFade,Fade,ZoomOut,None,MixLayout,FadeBottom, UnlimitedColor, QuickOption, BuyNow,Support,CheckFeatures,Document,Apply} from '../../constant'
+import {Configuration,ModalTitle,CopyText,Cancel,LayoutType,LTR,RTL,Box,SidebarType,SidebarSettings,Default,Border,IconColor,RouterAnimation,ZoomFade,SildeFade,Fade,ZoomOut,None,MixLayout,FadeBottom, UnlimitedColor, QuickOption,Apply} from '../../constant'
 import {
     ADD_LAYOUT,
     ADD_SIDEBAR_TYPES,
@@ -233,18 +233,7 @@ const Themecustomizer = (props) => {
                         </div> 
                         <span>{QuickOption}</span>   
                     </NavLink> 
-                    <a className="nav-link" href="https://pixelstrap.freshdesk.com/">
-                        <div><i className="icon-support"></i></div><span>{Support}</span> 
-                    </a> 
-                    <a className="nav-link" href="http://admin.pixelstrap.com/cuba/document/index.html">
-                        <div><i className="icon-settings"></i></div><span>{Document}</span> 
-                    </a> 
-                    <a className="nav-link"  href="http://admin.pixelstrap.com/cuba/theme/landing-page.html#frameworks" >
-                        <div><i className="icon-panel"></i></div><span>{CheckFeatures}</span> 
-                    </a> 
-                    <a className="nav-link"  href="https://1.envato.market/3GVzd">
-                        <div><i className="icon-shopping-cart-full"></i></div><span>{BuyNow}</span> 
-                    </a>
+              
                 </Nav>
             </div>
 
