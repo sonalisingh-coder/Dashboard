@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import { Container, Row, Col, Card, CardBody } from 'reactstrap'
 import DataTable from 'react-data-table-component';
-import csvFile from "./ticket-data.csv";
+//import csvFile from "./ticket-data.csv";
 import {productData} from "./ticket_classi_pred";
 import * as XLSX from 'xlsx';
 
