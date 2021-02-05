@@ -201,7 +201,7 @@ export const barChartData = {
         //     borderWidth: 2
         // },
         {
-            label: 'y',
+            label: 'total',
             lagend: 'y',
             data: [28, 48, 40, 19, 86, 27, 90],
             borderColor: primary,

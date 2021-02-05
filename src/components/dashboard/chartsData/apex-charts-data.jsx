@@ -6,14 +6,14 @@ const secondary = localStorage.getItem('secondary_color') || configDB.data.color
 // Defaut
 export const Currentlysale = {
   series: [{
-    name: 'network',
+    name: 'Network',
     data: [6, 20, 15, 40, 18, 20, 18, 23, 18, 35, 30, 55, 0]
   }, {
-    name: 'server',
+    name: 'Server',
     data: [2, 22, 35, 32, 40, 25, 50, 38, 42, 28, 20, 45, 0]
   },
   {
-    name: 'application',
+    name: 'Application',
     data: [12, 2, 15, 22, 40, 35, 55, 48, 32, 18, 25, 15, 0]
   },
 ],

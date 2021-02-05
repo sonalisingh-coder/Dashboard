@@ -8,6 +8,7 @@ import ThemeCustomize from "../layout/theme-customizer";
 import {ToastContainer} from 'react-toastify'
 import {withRouter} from 'react-router-dom'
 
+
 const App = ({children}) => {
   return (
     <Fragment>

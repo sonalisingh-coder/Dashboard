@@ -710,7 +710,7 @@
 
   .loader-17 {
     position: relative;
-    background-color: $warning-color;
+    background-color: var(--theme-deafult);
     border-radius: 50%;
 
     &:after,
@@ -726,7 +726,7 @@
     &:after {
       left: -.5em;
       top: -.25em;
-      background-color: $warning-color;
+      background-color: var(--theme-deafult);
       transform-origin: 30px 35px;
       animation: loader-17 1s linear infinite;
       opacity: .6;
@@ -735,7 +735,7 @@
     &:before {
       left: -1.25em;
       top: -.75em;
-      background-color: $warning-color;
+      background-color: var(--theme-deafult);
       transform-origin: 40px 40px;
       animation: loader-17 2s linear infinite;
     }

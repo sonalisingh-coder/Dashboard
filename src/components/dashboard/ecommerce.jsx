@@ -6,7 +6,7 @@ import {Container,Row,Col,Card,CardBody,CardHeader} from 'reactstrap'
 import CountUp from 'react-countup';
 import {  Bar} from 'react-chartjs-2';
 import { GoogleDonutChart,barChartData , barChartOptions,} from './chartsData/chartist-charts-data';
-import { Database, Layers,Lock } from 'react-feather';
+import { Database, Layers,Lock, ArrowUp } from 'react-feather';
 
 const Ecommerce = () => {
     // eslint-disable-next-line
@@ -41,12 +41,12 @@ const Ecommerce = () => {
                       </Col>
                     
                       <Col xl="12" className="p-0 left_side_earning">
-                        <h5>{"20%"}</h5>
+                        <h5>{"20% "}<ArrowUp className="icon-xs " style={{marginBottom:-4}}/></h5>
                         <p className="font-roboto">{"This Month Growth"}</p>
                       </Col>
                       <Col xl="12" className="p-0 left_side_earning">
-                        <h5>{"5%"}</h5>
-                        <p className="font-roboto">{"This WeekGrowth"}</p>
+                        <h5>{"5% "} <ArrowUp className="icon-xs" style={{marginBottom:-4}} /></h5>
+                        <p className="font-roboto">{"This Week Growth"}</p>
                       </Col>
                     
                     </Row>
@@ -170,13 +170,13 @@ const Ecommerce = () => {
               </CardHeader>
               <CardBody className="p-0">
                 <div className="news-update">
-                  <h6>{"36% off For pixel lights Couslations Types."}</h6><span>{"Lorem Ipsum is simply dummy..."}</span>
+                  <h6>{"Windows update is due on 28 Feb."}</h6><span>{"New windows update is coming soon."}</span>
                 </div>
                 <div className="news-update">
-                  <h6>{"We are produce new product this"}</h6><span> {"Lorem Ipsum is simply text of the printing... "}</span>
+                  <h6>{"Server A1.007 is Down for 6 hours"}</h6><span> {"Server team is working to solve this issue"}</span>
                 </div>
                 <div className="news-update">
-                  <h6>{"50% off For COVID Couslations Types."}</h6><span>{"Lorem Ipsum is simply dummy..."}</span>
+                  <h6>{"Network is down for India Location - Pune."}</h6><span>{"Network team is resolving this issue"}</span>
                 </div>
               </CardBody>
               <div className="card-footer" style={{padding:30}}>
