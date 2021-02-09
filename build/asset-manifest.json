@@ -1,29 +1,28 @@
 {
   "files": {
-    "main.css": "/static/css/main.5aece8db.chunk.css",
-    "main.js": "/static/js/main.34436861.chunk.js",
-    "main.js.map": "/static/js/main.34436861.chunk.js.map",
+    "main.css": "/static/css/main.f778bfc5.chunk.css",
+    "main.js": "/static/js/main.269b38de.chunk.js",
+    "main.js.map": "/static/js/main.269b38de.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.33c73c3a.js",
     "runtime-main.js.map": "/static/js/runtime-main.33c73c3a.js.map",
-    "static/css/2.41dcb8a8.chunk.css": "/static/css/2.41dcb8a8.chunk.css",
-    "static/js/2.c26c8ef3.chunk.js": "/static/js/2.c26c8ef3.chunk.js",
-    "static/js/2.c26c8ef3.chunk.js.map": "/static/js/2.c26c8ef3.chunk.js.map",
+    "static/css/2.cd3ea72e.chunk.css": "/static/css/2.cd3ea72e.chunk.css",
+    "static/js/2.10bae5b3.chunk.js": "/static/js/2.10bae5b3.chunk.js",
+    "static/js/2.10bae5b3.chunk.js.map": "/static/js/2.10bae5b3.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.0542b6ce0ea2a7796e83d53a3c8961df.js": "/precache-manifest.0542b6ce0ea2a7796e83d53a3c8961df.js",
+    "precache-manifest.8f221c1689f1013ee06af8f9151009a3.js": "/precache-manifest.8f221c1689f1013ee06af8f9151009a3.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/2.41dcb8a8.chunk.css.map": "/static/css/2.41dcb8a8.chunk.css.map",
-    "static/css/main.5aece8db.chunk.css.map": "/static/css/main.5aece8db.chunk.css.map",
-    "static/js/2.c26c8ef3.chunk.js.LICENSE.txt": "/static/js/2.c26c8ef3.chunk.js.LICENSE.txt",
+    "static/css/2.cd3ea72e.chunk.css.map": "/static/css/2.cd3ea72e.chunk.css.map",
+    "static/css/main.f778bfc5.chunk.css.map": "/static/css/main.f778bfc5.chunk.css.map",
+    "static/js/2.10bae5b3.chunk.js.LICENSE.txt": "/static/js/2.10bae5b3.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/static/media/zw.98a0162e.svg",
     "static/media/logo_dark.png": "/static/media/logo_dark.93e2ada9.png",
-    "static/media/profile.jpg": "/static/media/profile.c288e3dd.jpg",
-    "static/media/ticket-data.csv": "/static/media/ticket-data.67aac97d.csv"
+    "static/media/profile.jpg": "/static/media/profile.c288e3dd.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.33c73c3a.js",
-    "static/css/2.41dcb8a8.chunk.css",
-    "static/js/2.c26c8ef3.chunk.js",
-    "static/css/main.5aece8db.chunk.css",
-    "static/js/main.34436861.chunk.js"
+    "static/css/2.cd3ea72e.chunk.css",
+    "static/js/2.10bae5b3.chunk.js",
+    "static/css/main.f778bfc5.chunk.css",
+    "static/js/main.269b38de.chunk.js"
   ]
 }

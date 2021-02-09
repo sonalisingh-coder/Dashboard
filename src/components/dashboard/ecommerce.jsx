@@ -41,11 +41,11 @@ const Ecommerce = () => {
                       </Col>
                     
                       <Col xl="12" className="p-0 left_side_earning">
-                        <h5>{"20% "}<ArrowUp className="icon-xs " style={{marginBottom:-4}}/></h5>
+                        <h5>{"20% "}<ArrowUp className="icon-xs " style={{marginBottom:-4, color:'#f73164'}}/></h5>
                         <p className="font-roboto">{"This Month Growth"}</p>
                       </Col>
                       <Col xl="12" className="p-0 left_side_earning">
-                        <h5>{"5% "} <ArrowUp className="icon-xs" style={{marginBottom:-4}} /></h5>
+                        <h5>{"5% "} <ArrowUp className="icon-xs" style={{marginBottom:-4, color: '#f73164'}} /></h5>
                         <p className="font-roboto">{"This Week Growth"}</p>
                       </Col>
                     
