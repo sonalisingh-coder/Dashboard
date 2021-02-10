@@ -1,19 +1,12 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment} from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import { Container, Row, Col, Card, CardBody } from 'reactstrap'
 import DataTable from 'react-data-table-component';
-//import csvFile from "./ticket-data.csv";
 import {solutionData} from "./solution-data.js";
-import * as XLSX from 'xlsx';
+
 
 
 const Productlist = () => {
-
-
-  const [columns, setColumns] = useState([]);
-  const [data, setData] = useState([]);
-
-
 
   const tableColumns = [
     {
@@ -71,9 +64,7 @@ const Productlist = () => {
         <Row>
           <Col sm="12">
             <Card>
-              {/* <CardHeader>
-                                <h5>{"Ticket Classification"} </h5>
-                            </CardHeader> */}
+             
               <CardBody>
 
 

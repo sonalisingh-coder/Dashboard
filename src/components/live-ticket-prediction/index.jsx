@@ -13,12 +13,12 @@ const ManageProjects = () => {
     let [loader, setLoader] = useState(false);
     let [result, setResult] = useState([]);
     let [sortResult, setSortResult] = useState([]);
-    let [show , setShow] = useState(sortResult.length)
+    let [show , setShow] = useState(false)
     const ticketCategory = ticketNames.map((arr) => arr[0]);
 
 
     useEffect(() => {
-        if (!loader) {
+        if (!loader && show) {
 
             var displayInputDisable = Knob({
                 className: "review",
@@ -32,7 +32,7 @@ const ManageProjects = () => {
             document.getElementById('displayInputDisable').appendChild(displayInputDisable);
         }
 
-    }, [loader, predictedClass])
+    }, [loader, show , predictedClass])
 
 
 
@@ -60,9 +60,9 @@ const ManageProjects = () => {
 
                 setSortResult(arr.sort((left, right) => right[0] - left[0]).slice(0, 5));
                 console.log(sortResult);
-
+               
                 setClass(outputData[1])
-
+                
                 setLoader(false)
 
 
@@ -96,6 +96,7 @@ const ManageProjects = () => {
                                             <FormGroup className="text-center">
                                                 <Button type="submit" color="primary"
                                                     onClick={(e) => {
+                                                        setShow(true)
                                                         setLoader(true)
                                                         postData(e)
                                                     }} >{"Predict"}</Button>
@@ -103,7 +104,7 @@ const ManageProjects = () => {
                                         </Form>
                                     </Col>
                                 </Row>
-                                <Row >
+                              {show ? <Row >
                                     <Col md={{ size: 6, offset: 3 }} className="xl-50 box-col-6">
                                         <Card className="social-widget-card" style={{ marginTop: "20px" }}>
                                             <CardBody>
@@ -115,8 +116,7 @@ const ManageProjects = () => {
                                                         </div>
 
                                                         :
-                                                         
-                                                       
+
                                                                 <div>
                                                                     <div className="knob-block text-center">
                                                                         <div className="knob text-center" id="displayInputDisable" style={{ position: "relative" }}>
@@ -144,7 +144,7 @@ const ManageProjects = () => {
                                             </CardBody>
                                         </Card>
                                     </Col>
-                                </Row>
+                                </Row> : console.log(show) }
 
                             </CardBody>
                         </Card>

@@ -13,12 +13,12 @@ const CategoryPrediction = () => {
     let [loader, setLoader] = useState(false);
     let [result, setResult] = useState([]);
     let [sortResult, setSortResult] = useState([]);
-    let [fillValue, setFillValue] = useState(0);
+    let [show , setShow] = useState(false)
 
     const solutionData = solutionClasses.map(val => val["Solutions"]);
 
     useEffect(() => {
-        if (!loader) {
+        if (!loader && show) {
 
             var displayInputDisable = Knob({
                 className: "review",
@@ -88,12 +88,13 @@ const CategoryPrediction = () => {
                                         <Form onSubmit={postData} >
 
                                             <FormGroup>
-                                                <Label className="col-form-label mr-2">{"Category Description"}</Label>
+                                                <Label className="col-form-label mr-2">{"Solution Description"}</Label>
                                                 <Input className="form-control" type="text" name="item_cat" placeholder="Description" value={desc} onChange={(event) => setDesc(event.target.value)} autoComplete="off" />
                                             </FormGroup>
                                             <FormGroup className="text-center">
                                                 <Button type="submit" color="primary"
                                                     onClick={(e) => {
+                                                        setShow(true)
                                                         setLoader(true)
                                                         postData(e)
                                                     }} >{"Predict"}</Button>
@@ -101,7 +102,7 @@ const CategoryPrediction = () => {
                                         </Form>
                                     </Col>
                                 </Row>
-                                <Row >
+                                {show ?   <Row >
                                     <Col md={{ size: 6, offset: 3 }} className="xl-50 box-col-6">
                                         <Card className="social-widget-card" style={{ marginTop: "20px" }}>
                                             <CardBody>
@@ -144,7 +145,7 @@ const CategoryPrediction = () => {
                                             </CardBody>
                                         </Card>
                                     </Col>
-                                </Row>
+                                </Row> : ""}
 
                             </CardBody>
                         </Card>

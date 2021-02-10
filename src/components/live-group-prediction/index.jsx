@@ -12,25 +12,11 @@ const CategoryPrediction= () => {
     let [predictedClass, setClass] = useState(null);
     let [loader, setLoader] = useState(false);
     let [result, setResult] = useState([]);
-
+    let [show , setShow] = useState(false)
     const grpNames=  groupName.map((obj)=>obj[0]);
 
     useEffect(() => {
-        if(!loader ){
-      
-       
-        // const index =  predictedClass !==null ? grpNames.indexOf(predictedClass) : 0;
-        // console.log(result[index])
-        // var displayInputDisable = Knob({
-        //     className: "review",
-        //     thickness: 0.1,
-        //     fgColor: primary,
-        //     bgColor: '#f6f7fb',
-        //     lineCap: 'round',
-        //     displayPrevious: false,
-        //     value:  predictedClass !==null ? Math.floor(result[index]*100 ) : 0
-        // })
-        // document.getElementById('displayInputDisable').appendChild(displayInputDisable);
+        if(!loader && show ){
       
         var displayInputDisable = Knob({
             className: "review",
@@ -44,7 +30,7 @@ const CategoryPrediction= () => {
         document.getElementById('displayInputDisable').appendChild(displayInputDisable);
     }
 
-    }, [loader, predictedClass])
+    }, [loader,show, predictedClass])
  
     const postData = (e) => {
         e.preventDefault();
@@ -85,14 +71,8 @@ const CategoryPrediction= () => {
             <Breadcrumb title="Live Group Prediction" />
             <Container fluid={true}>
                 <Row>
-
-
                     <Col >
-                        <Card >
-                            {/* <CardHeader>
-                                <h5>{"Live Ticket Prediction"}</h5>
-                                <span>{""}</span>
-                            </CardHeader> */}
+                        <Card >                   
                             <CardBody >
                                 <Row >
                                     <Col md={{ size: 6, offset: 3 }} >
@@ -105,6 +85,7 @@ const CategoryPrediction= () => {
                                             <FormGroup className="text-center">
                                                 <Button type="submit" color="primary"
                                                     onClick={(e) => {
+                                                        setShow(true)
                                                         setLoader(true)
                                                         postData(e)
                                                     }} >{"Predict"}</Button>
@@ -112,7 +93,7 @@ const CategoryPrediction= () => {
                                         </Form>
                                     </Col>
                                 </Row>
-                                <Row >
+                                {show ? <Row >
                                     <Col md={{ size: 6, offset: 3 }} className="xl-50 box-col-6">
                                         <Card className="social-widget-card" style={{ marginTop: "20px" }}>
                                             <CardBody>
@@ -141,7 +122,7 @@ const CategoryPrediction= () => {
                                                               </h4>
                                                           </Col>
                                                           <Col className="text-center">
-                                                              {value.toFixed(3)}
+                                                              {(value*100).toFixed(1)+ "%"}
                                                           </Col>
                                                       </Row>
                                                       })}
@@ -155,7 +136,7 @@ const CategoryPrediction= () => {
                                             </CardBody>
                                         </Card>
                                     </Col>
-                                </Row>
+                                </Row> : " " }
 
                             </CardBody>
                         </Card>

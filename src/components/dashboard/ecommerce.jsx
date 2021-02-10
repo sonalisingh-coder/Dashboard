@@ -1,7 +1,8 @@
 import React, { Fragment,useState } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import ApexCharts from 'react-apexcharts'
-import { Currentlysale } from './chartsData/apex-charts-data'
+import Chart from 'react-apexcharts'
+import { Currentlysale ,  areaSpaline} from './chartsData/apex-charts-data'
 import {Container,Row,Col,Card,CardBody,CardHeader} from 'reactstrap' 
 import CountUp from 'react-countup';
 import {  Bar} from 'react-chartjs-2';
@@ -140,7 +141,16 @@ const Ecommerce = () => {
             </Card>
           </Col>
 
-         
+          <Col sm="12" xl="12">
+            <Card>
+              <CardHeader>
+                <h5>{"Area Spaline Chart"} </h5>
+              </CardHeader>
+              <CardBody>
+                <Chart options={areaSpaline.options} series={areaSpaline.series} height="350" type="area" />
+              </CardBody>
+            </Card>
+          </Col>  
 
 <Col xl="6" md="12">
             <Card>
@@ -148,7 +158,7 @@ const Ecommerce = () => {
                 <h5>{"Tickets By Urgency"}</h5>
               </CardHeader>
               <CardBody className="chart-block">
-                  <Bar data={barChartData} options={barChartOptions} width={778} height={400} />
+                  <Bar data={barChartData} options={barChartOptions} width={778} height={410} />
               </CardBody>
             </Card>
           </Col>

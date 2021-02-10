@@ -104,35 +104,13 @@ export const smallchart4option = {
     }
 }
 
-// export const GooglePieChart2 = () => {
-//     return (
-//         <Chart
-//             width={'100%'}
-//             height={'320px'}
-//             chartType="PieChart"
-//             loader={<div>{"Loading Chart"}</div>}
-//             data={[
-//                 ['Tickets', 'Numbers'],
-//                 ['Open', 30],
-//                 ['Closed', 30],
-//                 ['Progress', 40]
-               
-//             ]}
-//             options={{
-//                 title: '',
-//                 colors: ["#a927f9", primary, "#51bb25", "#f8d62b", secondary],
-//                 is3D: true,
-//             }}
-//             rootProps={{ 'data-testid': '2' }}
-//         />
-//     )
-// }
+
 
 export const GoogleDonutChart = () => {
     return (
         <Chart
             width={'100%'}
-            height={'200px'}
+            height={'220px'}
             chartType="PieChart"
             loader={<div>{"Loading Chart"}</div>}
             data={[
