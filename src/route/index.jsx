@@ -20,7 +20,7 @@ import TicketPrediction from "../components/live-ticket-prediction"
 import SolutionPrediction from "../components/live-solution-prediction"
 
 //time prediction
-import TimePrediction from "../components/live-time-prediction"
+//import TimePrediction from "../components/live-time-prediction"
 
 export const routes = [
      
@@ -38,7 +38,6 @@ export const routes = [
 
         { path: "/app/live-solution-prediction", Component: SolutionPrediction },
 
-        { path: "/app/live-time-prediction", Component: TimePrediction },
-
+     
 
 ]

@@ -1,10 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Breadcrumb from '../../layout/breadcrumb'
 import { Container, Row, Col, Card, CardBody, Form, FormGroup, Label, Input, Button } from 'reactstrap'
-//import {groupName} from "./group-assign";
-//import {radialChart} from "../charts-data";
-import Chart from 'react-apexcharts'
 import Knob from "knob";
+import {solutionClasses} from "./solution-classes"
 import configDB from '../../data/customizer/config';
 const primary = localStorage.getItem('default_color') || configDB.data.color.primary_color;
 
@@ -13,81 +11,32 @@ const CategoryPrediction = () => {
     let [desc, setDesc] = useState("");
     let [predictedClass, setClass] = useState(null);
     let [loader, setLoader] = useState(false);
-    let [value0, setValue0] = useState("-");
-    let [value1, setValue1] = useState("-");
-    let [value2, setValue2] = useState("-");
-    let [value3, setValue3] = useState("-");
-    let [value4, setValue4] = useState("-");
-    let [radialChart , setRadialChart] = useState({});
+    let [result, setResult] = useState([]);
+    let [sortResult, setSortResult] = useState([]);
+    let [fillValue, setFillValue] = useState(0);
+
+    const solutionData = solutionClasses.map(val => val["Solutions"]);
 
     useEffect(() => {
         if (!loader) {
 
-            // let values = [value0, value1, value2, value3, value4];
-
-            // var displayInputDisable = Knob({
-            //     className: "review",
-            //     thickness: 0.1,
-            //     fgColor: primary,
-            //     bgColor: '#f6f7fb',
-            //     lineCap: 'round',
-            //     displayPrevious: false,
-            //     value: predictedClass !== null ? Math.floor(values[predictedClass] * 100) : 0
-            // })
-            // document.getElementById('displayInputDisable').appendChild(displayInputDisable);
-
-
-
-            setRadialChart({
-                series: [70],
-                options: {
-                    chart: {
-                        height: 350,
-                        type: 'radialBar',
-                    },
-                    plotOptions: {
-                        radialBar: {
-                            hollow: {
-                                margin: 15,
-                                size: '70%',
-                                image: require('../../assets/images/other-images/success.png'),
-                                imageWidth: 64,
-                                imageHeight: 64,
-                                imageClipped: false
-                            },
-                            dataLabels: {
-                                name: {
-                                    show: false,
-                                    color: '#fff'
-                                },
-                                value: {
-                                    show: true,
-                                    color: primary,
-                                    offsetY: 70,
-                                    fontSize: '22px'
-                                }
-                            }
-                        }
-                    },
-                    fill: {
-                        type: 'image',
-                        image: {
-                            src: [require('../../assets/images/user-card/5.jpg')],
-                        }
-                    },
-                    stroke: {
-                        lineCap: 'round'
-                    },
-                    labels: ['Volatility'],
-                }
-            } )
+            var displayInputDisable = Knob({
+                className: "review",
+                thickness: 0.1,
+                fgColor: primary,
+                bgColor: '#f6f7fb',
+                lineCap: 'round',
+                displayPrevious: false,
+                value: predictedClass !== null ? Math.floor(sortResult[0][0] * 100) : 0
+            })
+            document.getElementById('displayInputDisable').appendChild(displayInputDisable);
         }
 
     }, [loader, predictedClass])
 
     const postData = (e) => {
         e.preventDefault();
-        console.log(desc);
+
         fetch("https://model-for-solution.herokuapp.com/predict_api", {
             method: 'POST',
             headers: {
@@ -97,24 +46,25 @@ const CategoryPrediction = () => {
         })
             .then((response) => {
                 console.log(response)
-                return response.text()
+                return response.json()
             })
             .then(res => {
+              
+                res = JSON.parse(res)
+                
+                const outputData = res["data"]["0"];
+                setResult(outputData[2]);
 
-                // res = JSON.parse(res)
-                // let obj = res.data[0]
+                const arr = outputData[2];
+                for (let i = 0; i < arr.length; i++) {
+                    arr[i] = [arr[i], i];
+                }
 
-                console.log(res)
-                // console.log(typeof(obj[1]))
-                // console.log(typeof(obj[2][0]))
-                // setClass(obj[1])
-                // setValue0(obj[2][0])
-                // setValue1(obj[2][1])
-                // setValue2(obj[2][2])
-                // setValue3(obj[2][3])
-                // setValue4(obj[2][4])
+                setSortResult(arr.sort((left, right) => right[0] - left[0]).slice(0, 5));
+                console.log(sortResult);
+                console.log(outputData);
+                setClass(outputData[1])
                 setLoader(false)
-
             })
             .catch(err => console.log(err));
 
@@ -164,60 +114,29 @@ const CategoryPrediction = () => {
 
                                                         :
                                                         <div>
-                                                            
-                                                             {console.log(radialChart.options)}
-                                                            {/* <div id="chart-widget5">
-                                                                <Chart options={radialChart.options} series={[70]} height="340" type="radialBar" />
-                                                            </div> */}
+                                                            <div className="knob-block text-center">
+                                                                <div className="knob text-center" id="displayInputDisable" style={{ position: "relative" }}>
+
+                                                                </div>
+                                                            </div>
 
                                                             <h5 className="b-b-light" >Predicted Category : {predictedClass != null ? "Class " + predictedClass : ""} </h5>
 
-                                                            <Row >
-                                                                <Col className="text-center" style={{ color: "#EE4646" }}><span>{"Class 0"}</span>
-                                                                    <h4 className="counter mb-2">
-                                                                    </h4>
-                                                                </Col>
-                                                                <Col className="text-center">
-                                                                    {value0}
-                                                                </Col>
-                                                            </Row>
-                                                            <Row>
-                                                                <Col className="text-center" style={{ color: "#EE4646" }}><span>{"Class 1"}</span>
-                                                                    <h4 className="counter mb-2">
-                                                                    </h4>
-                                                                </Col>
-                                                                <Col className="text-center">
-                                                                    {value1}
-                                                                </Col>
-                                                            </Row>
 
-                                                            <Row>
-                                                                <Col className="text-center" style={{ color: "#EE4646" }}><span>{"Class 2"}</span>
-                                                                    <h4 className="counter mb-2">
-                                                                    </h4>
-                                                                </Col>
-                                                                <Col className="text-center">
-                                                                    {value2}
-                                                                </Col>
-                                                            </Row>
-                                                            <Row>
-                                                                <Col className="text-center" style={{ color: "#EE4646" }}><span>{"Class 3"}</span>
-                                                                    <h4 className="counter mb-2">
-                                                                    </h4>
-                                                                </Col>
-                                                                <Col className="text-center">
-                                                                    {value3}
-                                                                </Col>
-                                                            </Row>
-                                                            <Row>
-                                                                <Col className="text-center" style={{ color: "#EE4646" }}><span>{"Class 4"}</span>
-                                                                    <h4 className="counter mb-2">
-                                                                    </h4>
-                                                                </Col>
-                                                                <Col className="text-center">
-                                                                    {value4}
-                                                                </Col>
-                                                            </Row>
+
+                                                            {sortResult.map((value, i) => {
+                                                                return <Row key={i}>
+                                                                    <Col style={{ color: "#EE4646" }}><span>{solutionData[value[1]]}</span>
+                                                                        <h4 className="counter mb-2">
+                                                                        </h4>
+                                                                    </Col>
+                                                                    <Col className="text-center">
+                                                                        {(value[0] * 100).toFixed(1) + "%"}
+                                                                    </Col>
+                                                                </Row>
+                                                            })}
+
+
                                                         </div>
                                                 }
 

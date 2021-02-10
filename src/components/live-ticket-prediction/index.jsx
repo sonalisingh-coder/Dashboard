@@ -3,7 +3,7 @@ import Breadcrumb from '../../layout/breadcrumb'
 import { Container, Row, Col, Card, CardBody, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import Knob from "knob";
 import configDB from '../../data/customizer/config';
-import {ticketNames} from "./tickets-name";
+import { ticketNames } from "./tickets-name";
 const primary = localStorage.getItem('default_color') || configDB.data.color.primary_color;
 
 const ManageProjects = () => {
@@ -12,39 +12,30 @@ const ManageProjects = () => {
     let [predictedClass, setClass] = useState(null);
     let [loader, setLoader] = useState(false);
     let [result, setResult] = useState([]);
-    let[sortResult , setSortResult] = useState([]);
+    let [sortResult, setSortResult] = useState([]);
+    let [show , setShow] = useState(sortResult.length)
+    const ticketCategory = ticketNames.map((arr) => arr[0]);
 
-    // let [value0, setValue0] = useState("-");
-    // let [value1, setValue1] = useState("-");
-    // let [value2, setValue2] = useState("-");
-    // let [value3, setValue3] = useState("-");
-    // let [value4, setValue4] = useState("-");
-
-
-    const ticketCategory = ticketNames.map((arr)=> arr[0]);
-   // console.log(ticketCategory);
 
     useEffect(() => {
-        if(!loader){
-      
-       // let values = [value0, value1 , value2, value3, value4];
-      //const index =  predictedClass !==null ? ticketCategory.indexOf(predictedClass) : 0;
-        var displayInputDisable = Knob({
-            className: "review",
-            thickness: 0.1,
-            fgColor: primary,
-            bgColor: '#f6f7fb',
-            lineCap: 'round',
-            displayPrevious: false,
-            value:  predictedClass !==null ? Math.floor(sortResult[0][0]*100 ) : 0
-        })
-        document.getElementById('displayInputDisable').appendChild(displayInputDisable);
-    }
-    
+        if (!loader) {
+
+            var displayInputDisable = Knob({
+                className: "review",
+                thickness: 0.1,
+                fgColor: primary,
+                bgColor: '#f6f7fb',
+                lineCap: 'round',
+                displayPrevious: false,
+                value: predictedClass !== null ? Math.floor(sortResult[0][0] * 100) : 0
+            })
+            document.getElementById('displayInputDisable').appendChild(displayInputDisable);
+        }
+
     }, [loader, predictedClass])
- 
-    //https://area-category-level3.herokuapp.com/predict
-    
+
+
+
     const postData = (e) => {
         e.preventDefault();
         console.log(desc);
@@ -57,44 +48,31 @@ const ManageProjects = () => {
         })
             .then((response) => response.json())
             .then(res => {
-                //console.log(res);
-                // res = JSON.parse(res)
-                // console.log(res["data"]);
-                // let obj = res.data[0]
 
-                // console.log(typeof(obj[1]))
-                // console.log(typeof(obj[2][0]))
                 res = JSON.parse(res)
-                const outputData= res["data"]["0"];
+                const outputData = res["data"]["0"];
                 setResult(outputData[2]);
-               // console.log(outputData[2])
-              //  console.log(result);
+
                 const arr = outputData[2];
-                for(let i =0; i<arr.length ; i++){
-                      arr[i]=[arr[i],i];
+                for (let i = 0; i < arr.length; i++) {
+                    arr[i] = [arr[i], i];
                 }
 
-                setSortResult(arr.sort((left,right) => right[0]-left[0]).slice(0,5));
+                setSortResult(arr.sort((left, right) => right[0] - left[0]).slice(0, 5));
                 console.log(sortResult);
-               //  console.log(arr)
-               //  console.log(result);
+
                 setClass(outputData[1])
-                 
-               setLoader(false)
-               // setClass(obj[1])
-                // setValue0(obj[2][0])
-                // setValue1(obj[2][1])
-                // setValue2(obj[2][2])
-                // setValue3(obj[2][3])
-                // setValue4(obj[2][4])
-               
+
+                setLoader(false)
+
+
 
             })
             .catch(err => console.log(err));
 
 
     }
-
+ 
 
     return (
         <Fragment>
@@ -105,10 +83,7 @@ const ManageProjects = () => {
 
                     <Col >
                         <Card >
-                            {/* <CardHeader>
-                                <h5>{"Live Ticket Prediction"}</h5>
-                                <span>{""}</span>
-                            </CardHeader> */}
+
                             <CardBody >
                                 <Row >
                                     <Col md={{ size: 6, offset: 3 }} >
@@ -132,37 +107,38 @@ const ManageProjects = () => {
                                     <Col md={{ size: 6, offset: 3 }} className="xl-50 box-col-6">
                                         <Card className="social-widget-card" style={{ marginTop: "20px" }}>
                                             <CardBody>
-                                            
+
                                                 {
-                                                loader ?
-                                                    <div className="loader-box">
-                                                        <div className="loader-17"></div>
-                                                    </div>
-
-                                                    :
-                                                    <div>
-                                                       <div className="knob-block text-center">
-                                                            <div className="knob text-center" id="displayInputDisable" style={{ position: "relative" }}>
-                                                                <img src="../../assets/images/other-images/success.png"/>
-                                                            </div>
+                                                    loader ?
+                                                        <div className="loader-box">
+                                                            <div className="loader-17"></div>
                                                         </div>
-                                                        <h5 className="b-b-light" >Predicted Category : { predictedClass !=null ? predictedClass : ""} </h5>
-                                                        
-                                                       { sortResult.map((value,i)=>{
-                                                       return <Row key={i}>
-                                                            <Col  style={{ color: "#EE4646" }}><span>{ticketCategory[value[1]]}</span>
-                                                                <h4 className="counter mb-2">
-                                                                </h4>
-                                                            </Col>
-                                                            <Col className="text-center">
-                                                            {(value[0]*100).toFixed(1)+ "%"}
-                                                            </Col>
-                                                        </Row>})}
 
+                                                        :
+                                                         
                                                        
-                                                        
-                                                    </div>
-                                                }
+                                                                <div>
+                                                                    <div className="knob-block text-center">
+                                                                        <div className="knob text-center" id="displayInputDisable" style={{ position: "relative" }}>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <h5 className="b-b-light" >Predicted Category : {predictedClass != null ? predictedClass : ""} </h5>
+
+                                                                    {sortResult.map((value, i) => {
+                                                                        return <Row key={i}>
+                                                                            <Col style={{ color: "#EE4646" }}><span>{ticketCategory[value[1]]}</span>
+                                                                                <h4 className="counter mb-2">
+                                                                                </h4>
+                                                                            </Col>
+                                                                            <Col className="text-center">
+                                                                                {(value[0] * 100).toFixed(1) + "%"}
+                                                                            </Col>
+                                                                        </Row>
+                                                                    })}
+                                                                </div> 
+                                                        }
+                                                
 
 
                                             </CardBody>

@@ -19,8 +19,19 @@ const CategoryPrediction= () => {
         if(!loader ){
       
        
-        const index =  predictedClass !==null ? grpNames.indexOf(predictedClass) : 0;
-        console.log(result[index])
+        // const index =  predictedClass !==null ? grpNames.indexOf(predictedClass) : 0;
+        // console.log(result[index])
+        // var displayInputDisable = Knob({
+        //     className: "review",
+        //     thickness: 0.1,
+        //     fgColor: primary,
+        //     bgColor: '#f6f7fb',
+        //     lineCap: 'round',
+        //     displayPrevious: false,
+        //     value:  predictedClass !==null ? Math.floor(result[index]*100 ) : 0
+        // })
+        // document.getElementById('displayInputDisable').appendChild(displayInputDisable);
+      
         var displayInputDisable = Knob({
             className: "review",
             thickness: 0.1,
@@ -28,11 +39,11 @@ const CategoryPrediction= () => {
             bgColor: '#f6f7fb',
             lineCap: 'round',
             displayPrevious: false,
-            value:  predictedClass !==null ? Math.floor(result[index]*100 ) : 0
+            value: predictedClass !== null ? Math.floor(result[0] * 100) : 0
         })
         document.getElementById('displayInputDisable').appendChild(displayInputDisable);
     }
-    
+
     }, [loader, predictedClass])
  
     const postData = (e) => {
@@ -53,7 +64,9 @@ const CategoryPrediction= () => {
               
                  res = JSON.parse(res)
                  const outputData= res["data"]["0"];
-                 setResult(outputData[2]);
+                const arr =  outputData[2].sort((left, right) => right - left)
+                 setResult(arr);
+
                 //  console.log(outputData[2])
                 //  console.log(result);
                  setClass(outputData[1])
@@ -113,8 +126,11 @@ const CategoryPrediction= () => {
                                                     :
                                                     <div>
                                                         <div className="knob-block text-center">
-                                                            <div className="knob" id="displayInputDisable" style={{ position: "relative" }}></div>
+                                                            <div className="knob " id="displayInputDisable" style={{ position: "relative" }}>
+                                                                {/* <img src={img} /> */}
+                                                            </div>
                                                         </div>
+
                                                         <h5 className="b-b-light" >Predicted Category : { predictedClass !=null ? predictedClass : ""} </h5>
                                                         
                                                       {result.map((value, i) => {
